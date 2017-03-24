@@ -5,3 +5,15 @@ services:
     command: puma
     ports:
       - 80:9292
+    privileged: true
+  agent:
+    image: datadog/docker-dd-agent:latest
+    environment:
+      - API_KEY
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc/:/host/proc
+      - /cgroup/:/host/sys/fs/cgroup
+    privileged: true
+    labels:
+      - convox.agent=true
