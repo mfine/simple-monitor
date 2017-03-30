@@ -5,8 +5,6 @@ services:
     command: puma
     ports:
       - 80:9292
-    privileged: true
-
   agent:
     image: datadog/docker-dd-agent:latest
     environment:
