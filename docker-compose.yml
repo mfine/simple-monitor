@@ -5,13 +5,10 @@ services:
     command: puma
     ports:
       - 80:9292
-    links:
-      - agent
     privileged: true
+
   agent:
     image: datadog/docker-dd-agent:latest
-    ports:
-      - 8125:8125/udp
     environment:
       - API_KEY
     volumes:
@@ -21,3 +18,5 @@ services:
     privileged: true
     labels:
       - convox.agent=true
+    ports:
+      - 8125/udp
